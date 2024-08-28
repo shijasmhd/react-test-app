@@ -2,14 +2,113 @@
 @tailwind components;
 @tailwind utilities;
 
+.app {
+    background: #f4f4f4;
+}
+
 .header {
+    background: #2C5F2D;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    padding: 2% 0 2% 1%;
+    border-bottom: 3px solid #f4f4f4;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 300px;
     align-items: center;
 }
 
-.header img {
-    height: 4em;
-    padding: 5px;
-    border-radius: 5em;
+.logo {
+    width: 60px;
+    border: 2px solid #97BC62;
+    border-radius: 50%;
+}
+
+.location {
+    background: #f4f4f4;
+    border-radius: 1em;
+    height: 30px;
+    margin-right: auto;
+    margin-left: 2em;
+    color: gray;
+    font: normal 10px Arial, Helvetica, sans-serif;
+    padding-left: .5em;
+}
+
+.categories-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+.search-bar {
+    background: #f4f4f4;
+    border: 2px solid #97BC62;
+    width: 30%;
+    height: 30px;
+    margin: auto;
+    color: gray;
+    font: normal 13px Verdana, Geneva, Tahoma, sans-serif;
+    padding-left: 1em;
+    border-radius: 1em;
+}
+
+.nav-items {
+    display: flex;
+    background: #97BC62;
+    border: 1px solid #fefefe;
+}
+
+.nav-items  li {
+    padding: 15px;
+    color: #fefefe;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.restaurant-container {
+    height: 600px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.resto-card {
+    background: #9daa8c;
+    margin: 1%;
+    box-sizing: border-box;
+    color: #2C5F2D;
+    display: flex;
+    flex-basis: 20%;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.resto-card img {
+    border-bottom: 10px solid #2C5F2D;
+    height: 70%;
+    width: 100%;
+}
+
+.details {
+    padding: 10px 6px;
+    > :first-child {
+        font: bold 15px Verdana;
+    }
+}
+
+.resto-card:hover {
+    background: #97BC62;
+    border: 5px solid #97BC62;
+    transition: 250ms;
+    .details {
+        color: whitesmoke;
+    }
 }
