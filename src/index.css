@@ -46,12 +46,12 @@
 .search-bar {
     background: #f4f4f4;
     border: 2px solid #97BC62;
-    width: 30%;
+    width: 50%;
     height: 30px;
     margin: auto;
     color: gray;
     font: normal 13px Verdana, Geneva, Tahoma, sans-serif;
-    padding-left: 1em;
+    padding: 1em;
     border-radius: 1em;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .restaurant-container {
-    height: 600px;
+    height: 700px;
     width: 100%;
     padding: 10px;
     display: flex;
@@ -84,11 +84,11 @@
     box-sizing: border-box;
     color: #2C5F2D;
     display: flex;
-    flex-basis: 20%;
-    flex-grow: 1;
+    width: 220px;
+    height: 400px;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    text-align: left;
 }
 
 .resto-card img {
@@ -99,8 +99,15 @@
 
 .details {
     padding: 10px 6px;
+    width: 95%;
     > :first-child {
         font: bold 15px Verdana;
+    }
+    h4 {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -112,3 +119,21 @@
         color: whitesmoke;
     }
 }
+
+.shimmer-card {
+    margin: 1%;
+    border: 2px solid #97BC62;
+    color: #2C5F2D;
+    width: 220px;
+    height: 400px;
+    background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+    background-size: 300%;
+    background-position-x: 100%;
+    animation: shimmer 1s infinite linear;
+}
+
+@keyframes shimmer {
+    to {
+       background-position-x: 0%
+    }
+ }
