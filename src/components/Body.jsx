@@ -27,15 +27,16 @@ async function fetchData(setAllRestaurants, setRestaurants) {
   }
 }
 
-const SearchContainer = ({ setRestaurants, allRestaurants }) => {
+const SearchContainer = ({ onSearch }) => {
   const [searchText, setSearchText] = useState("");
   const placeHolder = "Search food or restaurant...";
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = filterData(searchText, allRestaurants);
-    setRestaurants(data);
+    const data = onSearch(searchText);
+    if (!data.length)
+      setSearchText("");
   }
 
   return (
@@ -50,11 +51,21 @@ const SearchContainer = ({ setRestaurants, allRestaurants }) => {
   );
 }
 
-const RestaurantContainer = ({ restaurantList }) => {
+const NoMatch = ({ resetFilter }) => {
+  return (
+    <div className="no-match-container">
+      <h1 className="no-match-heading"> Ohh No! </h1>
+      <h1 className="no-match-desc"> Nothing matched your search! </h1>
+      <button className="btn-home-err" onClick={resetFilter}> Reset filters </button>
+    </div>
+  );
+}
+
+const RestaurantContainer = ({ restaurantList, resetFilter }) => {
   return (
     <div className="restaurant-container">
       {
-        restaurantList.length < 1 ? <h1>Uhh ohh! Nothing matched your search!</h1> :
+        restaurantList.length < 1 ? <NoMatch resetFilter={resetFilter} /> :
           restaurantList.map((restaurant) => (
             <RestaurantCard key={restaurant.info.id} { ...restaurant.info } />
           ))
@@ -75,9 +86,7 @@ function getShimmer () {
 const ShimmerContainer = () => {
   return (
     <div className="restaurant-container">
-      {
-        getShimmer()
-      }
+      { getShimmer() }
     </div>
   );
 }
@@ -90,16 +99,27 @@ const Body = () => {
     fetchData(setAllRestaurants, setRestaurants);
   }, []);
 
+  const onSearch = (searchText) => {
+    const data = filterData(searchText, allRestaurants);
+    setRestaurants(data);
+
+    return data;
+  };
+
+  const resetFilter = () => {
+    setRestaurants(allRestaurants);
+  };
+
   return (
     <>
-      <SearchContainer
-        setRestaurants={setRestaurants}
-        allRestaurants={allRestaurants} />
-
+      <SearchContainer onSearch={onSearch} />
       {
         allRestaurants.length < 1 ?
           <ShimmerContainer /> :
-          <RestaurantContainer restaurantList={restaurants}/>
+          <RestaurantContainer
+            restaurantList={restaurants}
+            resetFilter={resetFilter}
+          />
       }
     </>
   );

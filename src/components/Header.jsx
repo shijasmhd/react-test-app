@@ -1,11 +1,12 @@
 import { locations } from '../config';
 import NavItems from './NavItems';
+import logo from '../assets/logo.png';
 
 const Header = () => {
   return (
     <div className="header">
       <img
-        src="../src/assets/logo.png"
+        src={logo}
         alt="logo" className="logo" />
       <select name="location" id="location" className="location">
         {
